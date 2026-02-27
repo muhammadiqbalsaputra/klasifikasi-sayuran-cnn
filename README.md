@@ -1,38 +1,76 @@
-# 🥬 Klasifikasi Gambar Sayuran (Vegetable Image Classification)
+# 🥬 Vegetable Image Classification
+
 **Submission Bintang 5 ⭐️⭐️⭐️⭐️⭐️ - Kelas Belajar Fundamental Deep Learning (Dicoding)**
 
 ## 📌 Deskripsi Proyek
-Proyek ini merupakan model *Machine Learning* berbasis *Convolutional Neural Network* (CNN) yang dibangun menggunakan TensorFlow dan Keras. Model ini dilatih untuk mengenali dan mengklasifikasikan 15 jenis gambar sayuran secara otomatis. Proyek ini disusun sebagai tugas akhir (submission) untuk kelas **Belajar Pengembangan Machine Learning** di Dicoding Academy.
 
-## ✨ Fitur & Pencapaian (Kriteria Bintang 5)
-Proyek ini telah dievaluasi dan memenuhi seluruh kriteria utama beserta kriteria opsional tingkat lanjut:
-* **Dataset Skala Besar:** Menggunakan kumpulan data skala besar (total 15.000 gambar untuk data latih).
-* **Pembuktian Resolusi Natural:** Melakukan inspeksi menggunakan *library* `PIL` untuk membuktikan bahwa dataset asli memiliki variasi resolusi yang tidak seragam (natural) sebelum masuk ke tahap *preprocessing* (`ImageDataGenerator`).
-* **Data Splitting Manual:** Memisahkan data mentah secara mandiri menggunakan modul `split-folders` dengan rasio pembagian **80% Train, 10% Validation, dan 10% Test**.
-* **Implementasi Custom Callback:** Membangun fungsi *callback* untuk menghentikan proses *training* secara otomatis ketika metrik akurasi telah menyentuh target **> 96%** guna mencegah *overfitting* dan menghemat waktu komputasi.
-* **Multi-Format Deployment-Ready:** Model telah sukses diekspor ke dalam berbagai format standar industri untuk kebutuhan *deployment* lintas platform:
-  1. **SavedModel** (Standar TensorFlow)
-  2. **TF-Lite** (Untuk aplikasi Mobile/Android/IoT)
-  3. **TFJS** (Untuk aplikasi Web/Browser menggunakan JavaScript)
-* **Pembuktian Inferensi:** Melakukan pengujian prediksi (*inference*) langsung di dalam *notebook* menggunakan model TF-Lite terhadap gambar sayuran baru.
+Proyek ini adalah sistem klasifikasi gambar berbasis **Convolutional Neural Network (CNN)** yang mampu mengenali 15 jenis sayuran secara otomatis. Dibangun menggunakan ekosistem TensorFlow, proyek ini dirancang untuk memenuhi kriteria kelulusan tertinggi pada modul *Belajar Pengembangan Machine Learning* di Dicoding Academy.
 
-## 📊 Hasil Pelatihan dan Evaluasi
-Model berhasil mempelajari fitur dataset dengan sangat baik dan konstan, melampaui batas minimum akurasi 95% yang disyaratkan oleh penilai. Berikut adalah metrik hasil akhir dari evaluasi model:
+## ✨ Fitur & Keunggulan Utama
 
-* **Data Training** -> Akurasi: **96.69%** | Loss: `0.1011`
-* **Data Validation** -> Akurasi: **97.21%** | Loss: `0.1006`
-* **Data Testing** -> Akurasi: **97.70%** | Loss: `0.0905`
+Model ini tidak hanya sekadar melatih data, tetapi menerapkan standar *best practice* dalam pengembangan AI:
 
-## 🗂️ Struktur Direktori Utama
-```text
-submission/
-├── saved_model/           # Direktori hasil ekspor model dalam format SavedModel
-├── tflite/
-│   ├── model.tflite       # File model yang sudah dikonversi ke TensorFlow Lite
-│   └── label.txt          # Daftar nama 15 kelas sayuran
-├── tfjs_model/            # Direktori ekspor model untuk deployment Web (TFJS)
-│   ├── model.json         # Arsitektur model TFJS
-│   └── group1-shard1of1.bin # Bobot (weights) model TFJS
-├── notebook.ipynb         # Source code lengkap (Training, Evaluasi, Inferensi)
-├── requirements.txt       # Daftar dependency dan library yang digunakan
-└── README.md              # Dokumentasi proyek
+* **Dataset Robust:** Mengolah total **15.000 gambar** dengan variasi resolusi alami (natural) yang divalidasi menggunakan library `PIL`.
+* **Pipeline Data Profesional:** Menggunakan `split-folders` untuk pembagian data yang presisi (**80% Train, 10% Val, 10% Test**) serta `ImageDataGenerator` untuk augmentasi gambar.
+* **Smart Training:** Implementasi **Custom Callback** yang menghentikan pelatihan saat akurasi menyentuh target **> 96%**, mengoptimalkan waktu komputasi dan mencegah *overfitting*.
+* **Deployment-Ready:** Model telah dikonversi ke berbagai format untuk kebutuhan produksi:
+* 📦 **SavedModel** (Server-side/Cloud)
+* 📱 **TF-Lite** (Mobile & Edge Devices)
+* 🌐 **TFJS** (Web/Browser Integration)
+
+
+
+---
+
+## 📊 Hasil Pelatihan & Evaluasi
+
+Model menunjukkan performa yang sangat impresif dengan tingkat akurasi di atas 96% pada seluruh subset data.
+
+### Ringkasan Metrik
+
+| Dataset | Akurasi | Loss |
+| --- | --- | --- |
+| **Training** | `96.69%` | `0.1011` |
+| **Validation** | `97.21%` | `0.1006` |
+| **Testing** | **97.70%** | **0.0905** |
+
+> **Note:** Hasil evaluasi pada data testing yang lebih tinggi dari data training menunjukkan model memiliki kemampuan generalisasi yang sangat baik terhadap data baru.
+
+---
+
+## 🗂️ Struktur Proyek
+
+```bash
+.
+├── saved_model/          # Standar TensorFlow model format
+├── tflite/               # Optimasi untuk Mobile/IoT
+│   ├── model.tflite
+│   └── label.txt
+├── tfjs_model/           # Deployment untuk ekosistem Web
+│   ├── model.json
+│   └── group1-shard1of1.bin
+├── notebook.ipynb        # Source code lengkap (End-to-End)
+├── requirements.txt      # Library dependencies
+└── README.md             # Dokumentasi Proyek
+
+```
+
+## 🚀 Cara Menjalankan Inferensi (TF-Lite)
+
+Kamu bisa menguji model ini menggunakan cuplikan kode Python berikut:
+
+```python
+import interpreter from tflite_runtime.interpreter as tflite
+
+# Load model TFLite
+interpreter = tflite.Interpreter(model_path="tflite/model.tflite")
+interpreter.allocate_tensors()
+
+# Proses prediksi lanjut di notebook...
+
+```
+
+---
+
+**Author:** [Muhammad Iqbal Saputra](https://www.google.com/search?q=https://github.com/username-kamu)
+*Student at Universitas Harkat Negeri | AI & Mobile Developer Enthusiast*
