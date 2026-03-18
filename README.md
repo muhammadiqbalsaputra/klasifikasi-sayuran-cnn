@@ -73,4 +73,4 @@ interpreter.allocate_tensors()
 ---
 
 **Author:** [Muhammad Iqbal Saputra](https://www.google.com/search?q=https://github.com/username-kamu)
-*Student at Universitas Harkat Negeri | AI & Mobile Developer Enthusiast*
+*Student at Universitas Harkat Negeri | AI, Web & Mobile Developer Enthusiast*
