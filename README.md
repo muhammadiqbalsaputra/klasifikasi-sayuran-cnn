@@ -24,7 +24,7 @@ Model ini tidak hanya sekadar melatih data, tetapi menerapkan standar *best prac
 
 ## 📊 Hasil Pelatihan & Evaluasi
 
-Model menunjukkan performa yang sangat impresif dengan tingkat akurasi di atas 96% pada seluruh subset data.
+Model menunjukkan performa yang sangat impresif dengan tingkat akurasi di atas 96% untuk seluruh dataset.
 
 ### Ringkasan Metrik
 
